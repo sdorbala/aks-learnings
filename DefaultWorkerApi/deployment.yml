@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default-worker-deployment
+spec:
+  selector:
+    matchLabels:
+      app: default-worker-pod
+  template:
+    metadata:
+      labels:
+        app: default-worker-pod
+    spec:
+      containers:
+      - name: default-worker-container
+        image: defaultworker:20230516.4
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
